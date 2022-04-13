@@ -1,0 +1,23 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Pokedex App",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodrigoEsquel/Pokedex.git"
+  },
+  "keywords": [
+    "pkemon",
+    "ftw"
+  ],
+  "author": "Rodrigo Fernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodrigoEsquel/Pokedex/issues"
+  },
+  "homepage": "https://github.com/rodrigoEsquel/Pokedex#readme"
+}
