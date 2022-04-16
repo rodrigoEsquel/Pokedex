@@ -79,7 +79,6 @@ function cargarPokemon(pokemon) {
 
 function cargarListaPokemon(nroLista) {
   const url = `${baseAPI}?offset=${nroLista}0&limit=10`;
-  console.log(url);
   fetch(url)
     .then((response) => response.json())
     .then((dataPkmn) => {
@@ -117,7 +116,7 @@ document.querySelector('#explorar-menos').onclick = function () {
   // inicializarPokedex();
   if (estado.lista === null) {
     estado.lista = 0;
-  } else if (estado.lista > 1) {
+  } else if (estado.lista > 0) {
     estado.lista = estado.lista - 1;
   }
   cargarListaPokemon(estado.lista);
