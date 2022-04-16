@@ -14,7 +14,7 @@ background-repeat: no-repeat;
 background-attachment: fixed;
   background-size: 100% 100%;">
   <div class="grid place-items-center h-screen">
-    <svg height="275" width="400" class="object-top">
+    <svg height="500" width="650" class="object-top select-none" viewBox="80 -10 220 320">
 
       <polygon points="0,0 0,50 85,50 115,25 200,25 200,0" style="fill:red;stroke:brown;stroke-width:1;" />
       <g>
@@ -88,8 +88,6 @@ background-attachment: fixed;
       <rect x="48" y="225" width="50" height="30" style="fill:green;stroke:brown;stroke-width:1" />
       <text id="numero" x="50" y="245" style="fill:rgb(32, 32, 32);"></text>
 
-
-
       <polygon id="padArriba" points="135,230 143,222 143,206 127,206 127,222" class="fill-gray-900 hover:fill-gray-600"
         style="stroke:black;stroke-width:1" onclick="alert('placeholder')" />
       <polygon id="padDerecha" points="135,230 143,222 158,222 158,238 143,238"
@@ -129,7 +127,18 @@ background-attachment: fixed;
           c-0.427,0-0.771,0.345-0.771,0.771v5.74C9.228,7.271,9.573,7.616,9.999,7.616z"></path>
         </svg>
       </g>
-      <rect id="display" x="215" y="65" width="145" height="60" rx="5" ry="5" style="fill:rgb(32, 32, 32);"></rect>
+      <rect x="215" y="65" width="145" height="60" rx="5" ry="5" style="fill:rgb(32, 32, 32);"></rect>
+
+
+      <svg x="215" y="65" width="70" height="90" viewBox="0 0 90 110">
+        <text id="display-1" x="0" y="10" style="fill:white;" class="text-xs"></text>
+      </svg>
+
+      <svg x="290" y="65" width="70" height="90" viewBox="0 0 90 110">
+        <text id="display-2" x="0" y="10" style="fill:white;" class="text-xs"></text>
+      </svg>
+
+
 
       <rect x="215" y="135" width="145" height="48" rx="5" ry="5" style="fill:rgb(12, 103, 183);"></rect>
       <svg x="214.5" y="134.5">
@@ -174,41 +183,31 @@ background-attachment: fixed;
             <rect x="117" y="25" width="28" height="23" rx="5" ry="5" />
             <text x="127" y="42">J</text>
           </g>
-
-
-
-
-
-
-
-
-
-
         </g>
       </svg>
 
       <rect x="215" y="200" width="58" height="24" rx="5" ry="5" style="fill:white;" />
       <svg x="214.5" y="199.5">
-        <g style="fill:white;stroke:black;stroke-width:0.5">
-          <rect id="buscar" x="1" y="1" width="28" height="23" rx="5" ry="5" onclick="alert('placeholder')" />
-          <rect id="explorar" x="30" y="1" width="28" height="23" rx="5" ry="5" onclick="alert('placeholder')" />
+        <g id="buscar" onclick="alert('placeholder')">
+          <rect x="1" y="1" width="28" height="23" rx="5" ry="5" style="fill:white;stroke:black;stroke-width:0.5" />
+          <svg x="5" y="3" class="svg-icon">
+            <path
+              d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z">
+            </path>
+          </svg>
+
+        </g>
+        <g id="explorar" onclick="alert('placeholder')">
+          <rect x="30" y="1" width="28" height="23" rx="5" ry="5" style="fill:white;stroke:black;stroke-width:0.5" />
+          <svg x="34" y="3" class="svg-icon">
+            <path
+              d="M18.092,5.137l-3.977-1.466h-0.006c0.084,0.042-0.123-0.08-0.283,0H13.82L10,5.079L6.178,3.671H6.172c0.076,0.038-0.114-0.076-0.285,0H5.884L1.908,5.137c-0.151,0.062-0.25,0.207-0.25,0.369v10.451c0,0.691,0.879,0.244,0.545,0.369l3.829-1.406l3.821,1.406c0.186,0.062,0.385-0.029,0.294,0l3.822-1.406l3.83,1.406c0.26,0.1,0.543-0.08,0.543-0.369V5.506C18.342,5.344,18.242,5.199,18.092,5.137 M5.633,14.221l-3.181,1.15V5.776l3.181-1.15V14.221z M9.602,15.371l-3.173-1.15V4.626l3.173,1.15V15.371z M13.57,14.221l-3.173,1.15V5.776l3.173-1.15V14.221z M17.547,15.371l-3.182-1.15V4.626l3.182,1.15V15.371z">
+            </path>
+          </svg>
         </g>
       </svg>
 
 
-
-
-      <svg x="219" y="203" class="svg-icon">
-        <path
-          d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z">
-        </path>
-      </svg>
-
-      <svg x="249" y="203" class="svg-icon">
-        <path
-          d="M18.092,5.137l-3.977-1.466h-0.006c0.084,0.042-0.123-0.08-0.283,0H13.82L10,5.079L6.178,3.671H6.172c0.076,0.038-0.114-0.076-0.285,0H5.884L1.908,5.137c-0.151,0.062-0.25,0.207-0.25,0.369v10.451c0,0.691,0.879,0.244,0.545,0.369l3.829-1.406l3.821,1.406c0.186,0.062,0.385-0.029,0.294,0l3.822-1.406l3.83,1.406c0.26,0.1,0.543-0.08,0.543-0.369V5.506C18.342,5.344,18.242,5.199,18.092,5.137 M5.633,14.221l-3.181,1.15V5.776l3.181-1.15V14.221z M9.602,15.371l-3.173-1.15V4.626l3.173,1.15V15.371z M13.57,14.221l-3.173,1.15V5.776l3.173-1.15V14.221z M17.547,15.371l-3.182-1.15V4.626l3.182,1.15V15.371z">
-        </path>
-      </svg>
 
 
 
@@ -233,9 +232,6 @@ background-attachment: fixed;
         style="fill:rgb(32, 32, 32);stroke:black;stroke-width:1" />
       <rect x="296" y="242" width="64" height="20" rx="5" ry="5"
         style="fill:rgb(32, 32, 32);stroke:black;stroke-width:1" />
-
-
-
 
     </svg>
     <input type="text" placeholder="Busca tu pokemon favorito por nombre o ID" class="w-80" />
