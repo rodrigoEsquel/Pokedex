@@ -9,7 +9,6 @@ const regexNombrePokemon = /^[a-zA-Z]*$/;
 const regexNumeroPokemon = /^[0-9]*$/;
 let imagenes;
 let listaPokemones;
-let linkPokemones;
 const estado = {
   lista: null,
   imagen: null,
@@ -17,14 +16,12 @@ const estado = {
 };
 
 //Funciones
-
 function inicializarPokedex() {
   $display1.innerHTML = '';
   $display2.innerHTML = '';
   imagenes = [];
-  listaPokemones = [];
-  linkPokemones = [];
-  estado.pantalla = null;
+  listaPokemones = [null, null, null, null, null, null, null, null, null, null];
+  estado.lista = null;
   estado.imagen = null;
   estado.pokemon = null;
   $imagen.setAttribute('href', './img/pokebola.png');
@@ -64,29 +61,30 @@ function actualizarListaPokemones() {
 }
 
 function cargarPokemon(pokemon) {
-  const url = baseAPI + pokemon;
-  fetch(url)
-    .then((response) => response.json())
-    .then((dataPkmn) => {
-      guardarImagenes(dataPkmn);
-      actualizarImagen(0);
-      actualizarPokemon(dataPkmn.id, dataPkmn.name);
-    })
-    .catch(function (error) {
-      console.log('Hubo un problema con la petición Fetch:' + error.message);
-      $inputText.value = 'Pokemon no encontrado';
-    });
+  if (!!pokemon) {
+    const url = baseAPI + pokemon;
+    fetch(url)
+      .then((response) => response.json())
+      .then((dataPkmn) => {
+        guardarImagenes(dataPkmn);
+        actualizarImagen(0);
+        actualizarPokemon(dataPkmn.id, dataPkmn.name);
+      })
+      .catch(function (error) {
+        console.log('Hubo un problema con la petición Fetch:' + error.message);
+        $inputText.value = 'Pokemon no encontrado';
+      });
+  }
 }
 
 function cargarListaPokemon(nroLista) {
-  const url = `${baseAPI}?offset=${nroLista}&limit=10`;
+  const url = `${baseAPI}?offset=${nroLista}0&limit=10`;
   console.log(url);
   fetch(url)
     .then((response) => response.json())
     .then((dataPkmn) => {
       dataPkmn.results.forEach((elem, i) => {
         listaPokemones[i] = elem.name;
-        linkPokemones[i] = elem.url;
       });
       actualizarListaPokemones();
     })
@@ -105,9 +103,23 @@ document.querySelector('#buscar').onclick = function () {
   }
 };
 
-document.querySelector('#explorar').onclick = function () {
-  inicializarPokedex();
-  estado.lista = 0;
+document.querySelector('#explorar-mas').onclick = function () {
+  // inicializarPokedex();
+  if (estado.lista === null) {
+    estado.lista = 0;
+  } else if (estado.lista < 1126) {
+    estado.lista = estado.lista + 1;
+  }
+  cargarListaPokemon(estado.lista);
+};
+
+document.querySelector('#explorar-menos').onclick = function () {
+  // inicializarPokedex();
+  if (estado.lista === null) {
+    estado.lista = 0;
+  } else if (estado.lista > 1) {
+    estado.lista = estado.lista - 1;
+  }
   cargarListaPokemon(estado.lista);
 };
 
@@ -136,5 +148,13 @@ document.querySelector('#padIzquierda').onclick = function () {
     cargarPokemon(estado.pokemon - 1);
   }
 };
+
+document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
+  if (elem.id === `boton-${i}`) {
+    elem.onclick = () => {
+      cargarPokemon(listaPokemones[i]);
+    };
+  }
+});
 
 inicializarPokedex();
