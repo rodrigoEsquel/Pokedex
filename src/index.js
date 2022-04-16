@@ -1,10 +1,11 @@
 // Inicializacion
 const baseAPI = 'https://pokeapi.co/api/v2/pokemon/';
 const $inputText = document.querySelector('input');
+const $imagen = document.querySelector('image');
+const $numero = document.querySelector('#numero');
 const regexNombrePokemon = /^[a-zA-Z]*$/;
 const regexNumeroPokemon = /^[0-9]*$/;
-let imagenes = [];
-
+let imagenes;
 const estado = {
   pantalla: 'off',
   imagen: null,
@@ -12,6 +13,16 @@ const estado = {
 };
 
 //Funciones
+
+const inicializarPokedex = function () {
+  imagenes = [];
+  estado.pantalla = 'off';
+  estado.imagen = null;
+  estado.pokemon = null;
+  $imagen.setAttribute('href', './img/pokebola.png');
+  $numero.innerHTML = '';
+};
+
 const guardarImagenes = function (dataPkmn) {
   imagenes = [];
   imagenes[0] = dataPkmn.sprites.front_default;
@@ -20,12 +31,12 @@ const guardarImagenes = function (dataPkmn) {
 };
 
 const actualizarImagen = function (numero) {
-  document.querySelector('image').setAttribute('href', imagenes[numero]);
+  $imagen.setAttribute('href', imagenes[numero]);
   estado.imagen = Number(numero);
 };
 
 const actualizarPokemon = function (numero) {
-  document.querySelector('#numero').innerHTML = 'ID ' + numero;
+  $numero.innerHTML = 'ID ' + numero;
   estado.pokemon = Number(numero);
 };
 
@@ -45,6 +56,8 @@ const cargarPokemon = function (pokemon) {
 };
 
 //Handlers
+document.querySelector('#reinicio').onclick = inicializarPokedex;
+
 document.querySelector('#buscar').onclick = function () {
   if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
     cargarPokemon($inputText.value);
@@ -76,3 +89,5 @@ document.querySelector('#padIzquierda').onclick = function () {
     cargarPokemon(estado.pokemon - 1);
   }
 };
+
+inicializarPokedex();
