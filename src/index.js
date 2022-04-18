@@ -35,40 +35,59 @@ function guardarImagenes(dataPkmn) {
   imagenes[2] = dataPkmn.sprites.other['official-artwork'].front_default;
 }
 
+function generarUrlPokemon(pokemon) {
+  return baseAPI + pokemon;
+}
+
 function actualizarImagen(numero) {
   $imagen.setAttribute('href', imagenes[numero]);
   estado.imagen = Number(numero);
 }
 
-function actualizarPokemon(numero, nombre) {
+function actualizarPokemon(numero, nombre, altura, peso, tipo) {
   $numero.innerHTML = 'ID ' + numero;
   estado.pokemon = Number(numero);
-  $display1.innerHTML = 'Nombre:';
-  $display2.innerHTML = nombre;
+  $display1.innerHTML = `<tspan x="0" y="12">Nombre:</tspan>
+                         <tspan x="0" y="25">Altura</tspan>
+                         <tspan x="0" y="38">Peso</tspan>
+                         <tspan x="0" y="51">Tipo</tspan>`;
+  $display2.innerHTML = `<tspan x="0" y="12">${nombre}</tspan>
+  <tspan x="0" y="25">${altura}</tspan>
+  <tspan x="0" y="38">${peso}</tspan>
+  <tspan x="0" y="51">${tipo[0].type.name}${tipo.length > 1 ? '-' + tipo[1].type.name : ''}</tspan>`;
 }
 
-function actualizarListaPokemones() {
-  $display1.innerHTML = `<tspan x="0" y="12">A: ${listaPokemones[0]}</tspan>
-                        <tspan x="0" y="25">B: ${listaPokemones[1]}</tspan>
-                        <tspan x="0" y="38">C: ${listaPokemones[2]}</tspan>
-                        <tspan x="0" y="51">D: ${listaPokemones[3]}</tspan>
-                        <tspan x="0" y="64">E: ${listaPokemones[4]}</tspan>`;
-  $display2.innerHTML = `<tspan x="0" y="12">F: ${listaPokemones[5]}</tspan>
-                        <tspan x="0" y="25">G: ${listaPokemones[6]}</tspan>
-                        <tspan x="0" y="38">H: ${listaPokemones[7]}</tspan>
-                        <tspan x="0" y="51">I: ${listaPokemones[8]}</tspan>
-                        <tspan x="0" y="64">J: ${listaPokemones[9]}</tspan>`;
+function generarUrlListaPokemon(pokemon) {
+  return `${baseAPI}?offset=${pokemon}0&limit=10`;
+}
+
+function actualizarListaPokemones(lista) {
+  lista.forEach((elem, i) => {
+    listaPokemones[i] = elem.name;
+  });
+}
+
+function mostrarListaPokemones() {
+  $display1.innerHTML = `<tspan x="0" y="12">${estado.lista * 10 + 1}-${listaPokemones[0]}</tspan>
+                        <tspan x="0" y="25">${estado.lista * 10 + 2}-${listaPokemones[1]}</tspan>
+                        <tspan x="0" y="38">${estado.lista * 10 + 3}-${listaPokemones[2]}</tspan>
+                        <tspan x="0" y="51">${estado.lista * 10 + 4}-${listaPokemones[3]}</tspan>
+                        <tspan x="0" y="64">${estado.lista * 10 + 5}-${listaPokemones[4]}</tspan>`;
+  $display2.innerHTML = `<tspan x="0" y="12">${estado.lista * 10 + 6}-${listaPokemones[5]}</tspan>
+                        <tspan x="0" y="25">${estado.lista * 10 + 7}-${listaPokemones[6]}</tspan>
+                        <tspan x="0" y="38">${estado.lista * 10 + 8}-${listaPokemones[7]}</tspan>
+                        <tspan x="0" y="51">${estado.lista * 10 + 9}-${listaPokemones[8]}</tspan>
+                        <tspan x="0" y="64">${estado.lista * 10 + 10}-${listaPokemones[9]}</tspan>`;
 }
 
 function cargarPokemon(pokemon) {
   if (!!pokemon) {
-    const url = baseAPI + pokemon;
-    fetch(url)
+    fetch(generarUrlPokemon(pokemon))
       .then((response) => response.json())
       .then((dataPkmn) => {
         guardarImagenes(dataPkmn);
         actualizarImagen(0);
-        actualizarPokemon(dataPkmn.id, dataPkmn.name);
+        actualizarPokemon(dataPkmn.id, dataPkmn.name, dataPkmn.height, dataPkmn.weight, dataPkmn.types);
       })
       .catch(function (error) {
         console.log('Hubo un problema con la petición Fetch:' + error.message);
@@ -78,14 +97,11 @@ function cargarPokemon(pokemon) {
 }
 
 function cargarListaPokemon(nroLista) {
-  const url = `${baseAPI}?offset=${nroLista}0&limit=10`;
-  fetch(url)
+  fetch(generarUrlListaPokemon(nroLista))
     .then((response) => response.json())
     .then((dataPkmn) => {
-      dataPkmn.results.forEach((elem, i) => {
-        listaPokemones[i] = elem.name;
-      });
-      actualizarListaPokemones();
+      actualizarListaPokemones(dataPkmn.results);
+      mostrarListaPokemones();
     })
     .catch(function (error) {
       console.log('Hubo un problema con la petición Fetch:' + error.message);
@@ -101,6 +117,17 @@ document.querySelector('#buscar').onclick = function () {
     cargarPokemon($inputText.value);
   }
 };
+
+$inputText.addEventListener('keypress', enviarInput, false);
+
+function enviarInput(event) {
+  if (event.key === 'Enter') {
+    inicializarPokedex();
+    if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
+      cargarPokemon($inputText.value);
+    }
+  }
+}
 
 document.querySelector('#explorar-mas').onclick = function () {
   // inicializarPokedex();
@@ -151,9 +178,12 @@ document.querySelector('#padIzquierda').onclick = function () {
 document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
   if (elem.id === `boton-${i}`) {
     elem.onclick = () => {
-      cargarPokemon(listaPokemones[i]);
+      if (estado.lista !== null) {
+        cargarPokemon(listaPokemones[i]);
+      }
     };
   }
 });
 
+// Inicio
 inicializarPokedex();
