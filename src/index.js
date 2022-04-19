@@ -113,8 +113,9 @@ document.querySelector('#reinicio').onclick = inicializarPokedex;
 
 document.querySelector('#buscar').onclick = function () {
   inicializarPokedex();
-  if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
-    cargarPokemon($inputText.value);
+  let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+  if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+    cargarPokemon(pokemon);
   }
 };
 
@@ -123,8 +124,9 @@ $inputText.addEventListener('keypress', enviarInput, false);
 function enviarInput(event) {
   if (event.key === 'Enter') {
     inicializarPokedex();
-    if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
-      cargarPokemon($inputText.value);
+    let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+      cargarPokemon(pokemon);
     }
   }
 }

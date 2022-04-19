@@ -26,7 +26,7 @@ describe('Pokedex', () => {
   });
 
   it('puede buscar un pokemon por nombre', () => {
-    const newPokemon = 'pikachu';
+    const newPokemon = 'Pikachu ';
     cy.get('input').type(`${newPokemon}{enter}`);
     cy.get('#numero').should('have.text', 'ID 25');
   });
