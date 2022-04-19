@@ -52,8 +52,8 @@ function actualizarPokemon(numero, nombre, altura, peso, tipo) {
                          <tspan x="0" y="38">Peso</tspan>
                          <tspan x="0" y="51">Tipo</tspan>`;
   $display2.innerHTML = `<tspan x="0" y="12">${nombre}</tspan>
-  <tspan x="0" y="25">${altura}</tspan>
-  <tspan x="0" y="38">${peso}</tspan>
+  <tspan x="0" y="25">${altura / 10} m</tspan>
+  <tspan x="0" y="38">${peso / 10} kg</tspan>
   <tspan x="0" y="51">${tipo[0].type.name}${tipo.length > 1 ? '-' + tipo[1].type.name : ''}</tspan>`;
 }
 
@@ -113,8 +113,9 @@ document.querySelector('#reinicio').onclick = inicializarPokedex;
 
 document.querySelector('#buscar').onclick = function () {
   inicializarPokedex();
-  if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
-    cargarPokemon($inputText.value);
+  let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+  if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+    cargarPokemon(pokemon);
   }
 };
 
@@ -123,8 +124,9 @@ $inputText.addEventListener('keypress', enviarInput, false);
 function enviarInput(event) {
   if (event.key === 'Enter') {
     inicializarPokedex();
-    if (regexNombrePokemon.test($inputText.value) || regexNumeroPokemon.test($inputText.value)) {
-      cargarPokemon($inputText.value);
+    let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+      cargarPokemon(pokemon);
     }
   }
 }
