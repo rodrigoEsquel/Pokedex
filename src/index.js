@@ -15,7 +15,7 @@ const estado = {
   pokemon: null,
 };
 
-//Funciones
+// Funciones
 function inicializarPokedex() {
   $display1.innerHTML = '';
   $display2.innerHTML = '';
@@ -45,7 +45,7 @@ function actualizarImagen(numero) {
 }
 
 function actualizarPokemon(numero, nombre, altura, peso, tipo) {
-  $numero.innerHTML = 'ID ' + numero;
+  $numero.innerHTML = `ID ${numero}`;
   estado.pokemon = Number(numero);
   $display1.innerHTML = `<tspan x="0" y="12">Nombre:</tspan>
                          <tspan x="0" y="25">Altura</tspan>
@@ -54,7 +54,7 @@ function actualizarPokemon(numero, nombre, altura, peso, tipo) {
   $display2.innerHTML = `<tspan x="0" y="12">${nombre}</tspan>
   <tspan x="0" y="25">${altura / 10} m</tspan>
   <tspan x="0" y="38">${peso / 10} kg</tspan>
-  <tspan x="0" y="51">${tipo[0].type.name}${tipo.length > 1 ? '-' + tipo[1].type.name : ''}</tspan>`;
+  <tspan x="0" y="51">${tipo[0].type.name}${tipo.length > 1 ? `-${tipo[1].type.name}` : ''}</tspan>`;
 }
 
 function generarUrlListaPokemon(pokemon) {
@@ -81,7 +81,7 @@ function mostrarListaPokemones() {
 }
 
 function cargarPokemon(pokemon) {
-  if (!!pokemon) {
+  if (pokemon) {
     fetch(generarUrlPokemon(pokemon))
       .then((response) => response.json())
       .then((dataPkmn) => {
@@ -89,8 +89,8 @@ function cargarPokemon(pokemon) {
         actualizarImagen(0);
         actualizarPokemon(dataPkmn.id, dataPkmn.name, dataPkmn.height, dataPkmn.weight, dataPkmn.types);
       })
-      .catch(function (error) {
-        console.log('Hubo un problema con la petición Fetch:' + error.message);
+      .catch((error) => {
+        console.log(`Hubo un problema con la petición Fetch:${error.message}`);
         $inputText.value = 'Pokemon no encontrado';
       });
   }
@@ -103,17 +103,17 @@ function cargarListaPokemon(nroLista) {
       actualizarListaPokemones(dataPkmn.results);
       mostrarListaPokemones();
     })
-    .catch(function (error) {
-      console.log('Hubo un problema con la petición Fetch:' + error.message);
+    .catch((error) => {
+      console.log(`Hubo un problema con la petición Fetch:${error.message}`);
     });
 }
 
-//Handlers
+// Handlers
 document.querySelector('#reinicio').onclick = inicializarPokedex;
 
 document.querySelector('#buscar').onclick = function () {
   inicializarPokedex();
-  let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+  const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
   if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
     cargarPokemon(pokemon);
   }
@@ -124,7 +124,7 @@ $inputText.addEventListener('keypress', enviarInput, false);
 function enviarInput(event) {
   if (event.key === 'Enter') {
     inicializarPokedex();
-    let pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
     if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
       cargarPokemon(pokemon);
     }
@@ -136,7 +136,7 @@ document.querySelector('#explorar-mas').onclick = function () {
   if (estado.lista === null) {
     estado.lista = 0;
   } else if (estado.lista < 1126) {
-    estado.lista = estado.lista + 1;
+    estado.lista += 1;
   }
   cargarListaPokemon(estado.lista);
 };
@@ -146,21 +146,21 @@ document.querySelector('#explorar-menos').onclick = function () {
   if (estado.lista === null) {
     estado.lista = 0;
   } else if (estado.lista > 0) {
-    estado.lista = estado.lista - 1;
+    estado.lista -= 1;
   }
   cargarListaPokemon(estado.lista);
 };
 
 document.querySelector('#padArriba').onclick = function () {
   if (typeof estado.imagen === 'number') {
-    let siguienteImagen = (estado.imagen + 1) % 3;
+    const siguienteImagen = (estado.imagen + 1) % 3;
     actualizarImagen(siguienteImagen);
   }
 };
 
 document.querySelector('#padAbajo').onclick = function () {
   if (typeof estado.imagen === 'number') {
-    let siguienteImagen = (estado.imagen + 2) % 3;
+    const siguienteImagen = (estado.imagen + 2) % 3;
     actualizarImagen(siguienteImagen);
   }
 };
