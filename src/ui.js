@@ -1,5 +1,5 @@
-function actualizarLineaDisplay(nroLinea, data = '') {
-  return `<tspan x="0" y="${13 * nroLinea}">${data}</tspan>`;
+function actualizarLineaDisplay(nroLinea, texto = '') {
+  return `<tspan x="0" y="${13 * nroLinea}">${texto}</tspan>`;
 }
 
 function mostrarDisplay(data) {
@@ -19,6 +19,65 @@ function mostrarDisplay(data) {
                       + actualizarLineaDisplay(5, data[4][1]);
 }
 
+function actualizarImagen(imagenesPokemon, indice = 0) {
+  for (let i = 0; i < indice; i += 1) {
+    imagenesPokemon.push(imagenesPokemon.shift());
+  }
+  const $imagen = document.querySelector('image');
+  $imagen.setAttribute('href', imagenesPokemon[0]);
+}
+function actualizarVisor(idPokemon) {
+  const $displayId = document.querySelector('#numero');
+  $displayId.innerHTML = `ID ${idPokemon}`;
+}
+
+function actualizarPad(idPokemon, imagenesPokemon, callbackPokemon) {
+  document.querySelector('#padArriba').onclick = actualizarImagen(imagenesPokemon, 1);
+  document.querySelector('#padAbajo').onclick = actualizarImagen(imagenesPokemon, (imagenesPokemon.length - 1));
+
+  document.querySelector('#padDerecha').onclick = function buscarPokemonSiguiente() {
+    callbackPokemon(idPokemon + 1);
+  };
+
+  document.querySelector('#padIzquierda').onclick = function buscarPokemonPrevio() {
+    if (idPokemon > 1) {
+      callbackPokemon(idPokemon - 1);
+    }
+  };
+}
+
+function actualizarBotones(callbackListaPokemones, listaPokemones) {
+  document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
+    elem.onclick = () => {
+      callbackListaPokemones(listaPokemones[i]);
+    };
+  });
+}
+
+function inicializarPokedex() {
+  $display1.innerHTML = '';
+  $display2.innerHTML = '';
+  imagenes = [];
+  listaPokemones = [null, null, null, null, null, null, null, null, null, null];
+  estado.lista = null;
+  estado.imagen = null;
+  estado.pokemon = null;
+  $imagen.setAttribute('href', './img/pokebola.png');
+  $numero.innerHTML = '';
+}
+export function obtenerPokemonSeleccionado() {
+}
+export function actualizarNavegacion(callbackListaPokemones, pagina = 0) {
+  document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
+    callbackListaPokemones((pagina + 1));
+  };
+  document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
+    if (pagina > 0) {
+      callbackListaPokemones((pagina + 1));
+    }
+  };
+}
+
 export function manejarPokemon(datosPokemon) {
   mostrarDisplay([
     ['Nombre', datosPokemon.nombre],
@@ -26,12 +85,12 @@ export function manejarPokemon(datosPokemon) {
     ['Peso', `${datosPokemon.peso / 10} kg`],
     ['Tipo', (datosPokemon.tipo[0].type.name + (datosPokemon.tipo.length > 1 ? `-${datosPokemon.tipo[1].type.name}` : ''))],
   ]);
-  actualizarImagen(datosPokemon.imagen);
+  actualizarImagen(datosPokemon.imagenes);
   actualizarVisor(datosPokemon.id);
-  actualizarPad(datosPokemon.id, datosPokemon.imagen);
+  actualizarPad(datosPokemon.id, datosPokemon.imagenes);
 }
 
-export function manejarListaPokemon(datosLista) {
+export function manejarListaPokemon(datosLista, callbackListaPokemones) {
   mostrarDisplay([
     [`${datosLista.pagina * 10 + 1}-${datosLista.resultado[0]}`, `${datosLista.pagina * 10 + 6}-${datosLista.resultado[5]}`],
     [`${datosLista.pagina * 10 + 2}-${datosLista.resultado[1]}`, `${datosLista.pagina * 10 + 7}-${datosLista.resultado[6]}`],
@@ -39,5 +98,26 @@ export function manejarListaPokemon(datosLista) {
     [`${datosLista.pagina * 10 + 4}-${datosLista.resultado[3]}`, `${datosLista.pagina * 10 + 9}-${datosLista.resultado[8]}`],
     [`${datosLista.pagina * 10 + 5}-${datosLista.resultado[4]}`, `${datosLista.pagina * 10 + 10}-${datosLista.resultado[9]}`],
   ]);
-  actualizarBotones(datosLista.resultado);
+  actualizarBotones(callbackListaPokemones, datosLista.resultado);
+  actualizarNavegacion(callbackListaPokemones, datosLista.pagina);
+}
+
+export function inicializarInput(callbackPokemon) {
+  document.querySelector('#reinicio').onclick = inicializarPokedex;
+  const $inputText = document.querySelector('input');
+  function buscarPokemon() {
+    const regexNombrePokemon = /^[a-zA-Z]*$/;
+    const regexNumeroPokemon = /^[0-9]*$/;
+    const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+      callbackPokemon(pokemon);
+    }
+  }
+  document.querySelector('#buscar').onclick = buscarPokemon;
+  function enviarInput(event) {
+    if (event.key === 'Enter') {
+      buscarPokemon();
+    }
+  }
+  $inputText.addEventListener('keypress', enviarInput, false);
 }

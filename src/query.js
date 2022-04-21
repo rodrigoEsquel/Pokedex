@@ -1,4 +1,12 @@
-import { generarUrlPokemon, generarUrlListaPokemon } from './query';
+const baseAPI = 'https://pokeapi.co/api/v2/pokemon/';
+
+function generarUrlPokemon(pokemon) {
+  return baseAPI + pokemon;
+}
+
+function generarUrlListaPokemon(pagina) {
+  return `${baseAPI}?offset=${pagina}0&limit=10`;
+}
 
 export async function cargarPokemon(pokemon) {
   return fetch(generarUrlPokemon(pokemon))
