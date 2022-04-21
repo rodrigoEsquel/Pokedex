@@ -90,8 +90,8 @@ function cargarPokemon(pokemon) {
         actualizarPokemon(dataPkmn.id, dataPkmn.name, dataPkmn.height, dataPkmn.weight, dataPkmn.types);
       })
       .catch((error) => {
-        console.log(`Hubo un problema con la petición Fetch:${error.message}`);
         $inputText.value = 'Pokemon no encontrado';
+        throw Error(`Hubo un problema con la petición Fetch:${error.message}`);
       });
   }
 }
@@ -104,22 +104,20 @@ function cargarListaPokemon(nroLista) {
       mostrarListaPokemones();
     })
     .catch((error) => {
-      console.log(`Hubo un problema con la petición Fetch:${error.message}`);
+      throw Error(`Hubo un problema con la petición Fetch:${error.message}`);
     });
 }
 
 // Handlers
 document.querySelector('#reinicio').onclick = inicializarPokedex;
 
-document.querySelector('#buscar').onclick = function () {
+document.querySelector('#buscar').onclick = function buscarPokemon() {
   inicializarPokedex();
   const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
   if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
     cargarPokemon(pokemon);
   }
 };
-
-$inputText.addEventListener('keypress', enviarInput, false);
 
 function enviarInput(event) {
   if (event.key === 'Enter') {
@@ -130,6 +128,8 @@ function enviarInput(event) {
     }
   }
 }
+
+$inputText.addEventListener('keypress', enviarInput, false);
 
 document.querySelector('#explorar-mas').onclick = function () {
   // inicializarPokedex();
@@ -165,13 +165,13 @@ document.querySelector('#padAbajo').onclick = function () {
   }
 };
 
-document.querySelector('#padDerecha').onclick = function () {
+document.querySelector('#padDerecha').onclick = function buscarPokemonSiguiente() {
   if (typeof estado.pokemon === 'number') {
     cargarPokemon(estado.pokemon + 1);
   }
 };
 
-document.querySelector('#padIzquierda').onclick = function () {
+document.querySelector('#padIzquierda').onclick = function buscarPokemonPrevio() {
   if (typeof estado.pokemon === 'number' && estado.pokemon > 1) {
     cargarPokemon(estado.pokemon - 1);
   }
