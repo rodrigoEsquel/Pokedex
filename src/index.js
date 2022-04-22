@@ -21,8 +21,8 @@ async function actualizalistaPokemon(nroLista) {
   actualizarUiListaPokemon(listaPokemon, actualizaPokemon, actualizalistaPokemon);
 }
 
-function Pokedex() {
+function pokedex() {
   inicializarPokedex(actualizaPokemon, actualizalistaPokemon);
 }
 
-Pokedex();
+pokedex();
