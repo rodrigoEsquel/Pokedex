@@ -6,7 +6,7 @@
   "scripts": {
     "server": "http-server",
     "test": "cypress run",
-    "eslint": "./node_modules/.bin/eslint --fix  ./src/"
+    "eslint": "./node_modules/.bin/eslint --fix  /src/"
   },
   "repository": {
     "type": "git",

@@ -1,17 +1,20 @@
 import { obtenerDatosPokemon, obtenerListaPokemones } from './dataHandler';
 import {
-  manejarPokemon, manejarListaPokemon, inicializarInput, actualizarNavegacion, obtenerPokemonSeleccionado,
+  actualizarUiPokemon, actualizarUiListaPokemon, inicializarPokedex,
 } from './ui';
 
-function actualizaPKMN() { manejarPokemon(obtenerDatosPokemon); }
-function actualizalistaPKMN() {
-  const listaPokemon = obtenerListaPokemones(obtenerPokemonSeleccionado);
-  manejarListaPokemon(listaPokemon);
+async function actualizaPokemon(pokemon) {
+  const infoPokemon = await obtenerDatosPokemon(pokemon);
+  actualizarUiPokemon(infoPokemon, obtenerDatosPokemon);
 }
 
-function inicializarPokedex() {
-  inicializarInput();
-  actualizarNavegacion(actualizalistaPKMN);
+async function actualizalistaPokemon(nroLista) {
+  const listaPokemon = await obtenerListaPokemones(nroLista);
+  actualizarUiListaPokemon(listaPokemon, obtenerDatosPokemon, obtenerListaPokemones);
 }
 
-inicializarPokedex();
+function Pokedex() {
+  inicializarPokedex(actualizaPokemon, actualizalistaPokemon);
+}
+
+Pokedex();

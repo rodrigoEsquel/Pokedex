@@ -1,3 +1,23 @@
+// Funciones
+function configurarBusquedaInput(callbackPokemon) {
+  const $inputText = document.querySelector('input');
+  function buscarPokemon() {
+    const regexNombrePokemon = /^[a-zA-Z]*$/;
+    const regexNumeroPokemon = /^[0-9]*$/;
+    const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
+      callbackPokemon(pokemon);
+    }
+  }
+  document.querySelector('#buscar').onclick = buscarPokemon;
+  function enviarInput(event) {
+    if (event.key === 'Enter') {
+      buscarPokemon();
+    }
+  }
+  $inputText.addEventListener('keypress', enviarInput, false);
+}
+
 function actualizarLineaDisplay(nroLinea, texto = '') {
   return `<tspan x="0" y="${13 * nroLinea}">${texto}</tspan>`;
 }
@@ -26,6 +46,7 @@ function actualizarImagen(imagenesPokemon, indice = 0) {
   const $imagen = document.querySelector('image');
   $imagen.setAttribute('href', imagenesPokemon[0]);
 }
+
 function actualizarVisor(idPokemon) {
   const $displayId = document.querySelector('#numero');
   $displayId.innerHTML = `ID ${idPokemon}`;
@@ -46,14 +67,25 @@ function actualizarPad(idPokemon, imagenesPokemon, callbackPokemon) {
   };
 }
 
-function actualizarBotones(callbackListaPokemones, listaPokemones) {
+function actualizarBotones(callbackPokemon, listaPokemones) {
   document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
+    // eslint-disable-next-line no-param-reassign
     elem.onclick = () => {
-      callbackListaPokemones(listaPokemones[i]);
+      callbackPokemon(listaPokemones[i]);
     };
   });
 }
 
+function actualizarNavegacion(callbackListaPokemones, pagina) {
+  document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
+    callbackListaPokemones(pagina);
+  };
+  document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
+    callbackListaPokemones(pagina);
+  };
+}
+
+/*
 function inicializarPokedex() {
   $display1.innerHTML = '';
   $display2.innerHTML = '';
@@ -65,20 +97,19 @@ function inicializarPokedex() {
   $imagen.setAttribute('href', './img/pokebola.png');
   $numero.innerHTML = '';
 }
-export function obtenerPokemonSeleccionado() {
-}
-export function actualizarNavegacion(callbackListaPokemones, pagina = 0) {
+*/
+
+export function inicializarPokedex(callbackPokemon, callbackListaPokemones) {
   document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
-    callbackListaPokemones((pagina + 1));
+    callbackListaPokemones(0);
   };
   document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
-    if (pagina > 0) {
-      callbackListaPokemones((pagina + 1));
-    }
+    callbackListaPokemones(0);
   };
+  configurarBusquedaInput(callbackPokemon);
 }
 
-export function manejarPokemon(datosPokemon) {
+export function actualizarUiPokemon(datosPokemon) {
   mostrarDisplay([
     ['Nombre', datosPokemon.nombre],
     ['Altura', `${datosPokemon.altura / 10} m`],
@@ -90,7 +121,7 @@ export function manejarPokemon(datosPokemon) {
   actualizarPad(datosPokemon.id, datosPokemon.imagenes);
 }
 
-export function manejarListaPokemon(datosLista, callbackListaPokemones) {
+export function actualizarUiListaPokemon(datosLista, callbackListaPokemones, callbackPokemon) {
   mostrarDisplay([
     [`${datosLista.pagina * 10 + 1}-${datosLista.resultado[0]}`, `${datosLista.pagina * 10 + 6}-${datosLista.resultado[5]}`],
     [`${datosLista.pagina * 10 + 2}-${datosLista.resultado[1]}`, `${datosLista.pagina * 10 + 7}-${datosLista.resultado[6]}`],
@@ -98,26 +129,6 @@ export function manejarListaPokemon(datosLista, callbackListaPokemones) {
     [`${datosLista.pagina * 10 + 4}-${datosLista.resultado[3]}`, `${datosLista.pagina * 10 + 9}-${datosLista.resultado[8]}`],
     [`${datosLista.pagina * 10 + 5}-${datosLista.resultado[4]}`, `${datosLista.pagina * 10 + 10}-${datosLista.resultado[9]}`],
   ]);
-  actualizarBotones(callbackListaPokemones, datosLista.resultado);
+  actualizarBotones(callbackPokemon, datosLista.resultado);
   actualizarNavegacion(callbackListaPokemones, datosLista.pagina);
-}
-
-export function inicializarInput(callbackPokemon) {
-  document.querySelector('#reinicio').onclick = inicializarPokedex;
-  const $inputText = document.querySelector('input');
-  function buscarPokemon() {
-    const regexNombrePokemon = /^[a-zA-Z]*$/;
-    const regexNumeroPokemon = /^[0-9]*$/;
-    const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
-    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {
-      callbackPokemon(pokemon);
-    }
-  }
-  document.querySelector('#buscar').onclick = buscarPokemon;
-  function enviarInput(event) {
-    if (event.key === 'Enter') {
-      buscarPokemon();
-    }
-  }
-  $inputText.addEventListener('keypress', enviarInput, false);
 }

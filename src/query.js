@@ -8,7 +8,7 @@ function generarUrlListaPokemon(pagina) {
   return `${baseAPI}?offset=${pagina}0&limit=10`;
 }
 
-export async function cargarPokemon(pokemon) {
+export function cargarPokemon(pokemon) {
   return fetch(generarUrlPokemon(pokemon))
     .then((response) => response.json())
     .catch((error) => {
@@ -17,7 +17,7 @@ export async function cargarPokemon(pokemon) {
     });
 }
 
-export async function cargarListaPokemon(pagina) {
+export function cargarListaPokemon(pagina) {
   return fetch(generarUrlListaPokemon(pagina))
     .then((response) => response.json())
     .then((dataPkmn) => dataPkmn.results)
