@@ -25,41 +25,53 @@ function actualizarLineaDisplay(nroLinea, texto = '') {
 function mostrarDisplay(data) {
   const $display1 = document.querySelector('#display-1');
   const $display2 = document.querySelector('#display-2');
+  let display1 = '';
+  let display2 = '';
+  data.forEach((elem, i) => {
+    display1 += actualizarLineaDisplay((i + 1), elem[0]);
+  });
+  data.forEach((elem, i) => {
+    display2 += actualizarLineaDisplay((i + 1), elem[1]);
+  });
+  $display1.innerHTML = display1;
+  $display2.innerHTML = display2;
+}
 
-  $display1.innerHTML = actualizarLineaDisplay(1, data[0][0])
-                      + actualizarLineaDisplay(2, data[1][0])
-                      + actualizarLineaDisplay(3, data[2][0])
-                      + actualizarLineaDisplay(4, data[3][0])
-                      + actualizarLineaDisplay(5, data[4][0]);
+function mostrarImagen(imagen) {
+  const $imagen = document.querySelector('image');
+  $imagen.setAttribute('href', imagen);
+}
 
-  $display2.innerHTML = actualizarLineaDisplay(1, data[0][1])
-                      + actualizarLineaDisplay(2, data[1][1])
-                      + actualizarLineaDisplay(3, data[2][1])
-                      + actualizarLineaDisplay(4, data[3][1])
-                      + actualizarLineaDisplay(5, data[4][1]);
+function actualizarPadArrAbj(imagenesPokemon, callbackActualizarImagen) {
+  document.querySelector('#padArriba').onclick = function buscarImagenSiguiente() {
+    callbackActualizarImagen(imagenesPokemon, 1);
+  };
+  document.querySelector('#padAbajo').onclick = function buscarImagenSiguiente() {
+    callbackActualizarImagen(imagenesPokemon, (imagenesPokemon.length - 1));
+  };
 }
 
 function actualizarImagen(imagenesPokemon, indice = 0) {
   for (let i = 0; i < indice; i += 1) {
     imagenesPokemon.push(imagenesPokemon.shift());
   }
-  const $imagen = document.querySelector('image');
-  $imagen.setAttribute('href', imagenesPokemon[0]);
+  actualizarPadArrAbj(imagenesPokemon, actualizarImagen);
+  mostrarImagen(imagenesPokemon[0]);
 }
 
-function actualizarVisor(idPokemon) {
+function actualizarVisor(input) {
+  let mensaje = input;
   const $displayId = document.querySelector('#numero');
-  $displayId.innerHTML = `ID ${idPokemon}`;
+  if (mensaje) {
+    mensaje = `ID ${mensaje}`;
+  }
+  $displayId.innerHTML = mensaje;
 }
 
-function actualizarPad(idPokemon, imagenesPokemon, callbackPokemon) {
-  document.querySelector('#padArriba').onclick = actualizarImagen(imagenesPokemon, 1);
-  document.querySelector('#padAbajo').onclick = actualizarImagen(imagenesPokemon, (imagenesPokemon.length - 1));
-
+function actualizarPadIzqDer(idPokemon, callbackPokemon) {
   document.querySelector('#padDerecha').onclick = function buscarPokemonSiguiente() {
     callbackPokemon(idPokemon + 1);
   };
-
   document.querySelector('#padIzquierda').onclick = function buscarPokemonPrevio() {
     if (idPokemon > 1) {
       callbackPokemon(idPokemon - 1);
@@ -67,7 +79,7 @@ function actualizarPad(idPokemon, imagenesPokemon, callbackPokemon) {
   };
 }
 
-function actualizarBotones(callbackPokemon, listaPokemones) {
+function actualizarBotones(listaPokemones, callbackPokemon) {
   document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
     // eslint-disable-next-line no-param-reassign
     elem.onclick = () => {
@@ -76,52 +88,60 @@ function actualizarBotones(callbackPokemon, listaPokemones) {
   });
 }
 
-function actualizarNavegacion(callbackListaPokemones, pagina) {
+function actualizarNavegacion(pagina, callbackListaPokemones) {
+  const siguientePagina = pagina === 'inic' ? 0 : pagina + 1;
+  const anteriorPagina = pagina === 'inic' ? 0 : pagina + 1;
   document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
-    callbackListaPokemones(pagina);
+    callbackListaPokemones(siguientePagina);
   };
   document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
-    callbackListaPokemones(pagina);
+    if (pagina !== 0) {
+      callbackListaPokemones(anteriorPagina);
+    }
   };
 }
-
 /*
-function inicializarPokedex() {
-  $display1.innerHTML = '';
-  $display2.innerHTML = '';
-  imagenes = [];
-  listaPokemones = [null, null, null, null, null, null, null, null, null, null];
-  estado.lista = null;
-  estado.imagen = null;
-  estado.pokemon = null;
-  $imagen.setAttribute('href', './img/pokebola.png');
-  $numero.innerHTML = '';
+function inicializarNavegacion(callbackListaPokemones) {
+  document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
+    callbackListaPokemones(0);
+  };
+  document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
+    callbackListaPokemones(0);
+  };
+} */
+
+function configurarBotonReset(callbackListaPokemones) {
+  document.querySelector('#reinicio').onclick = function reiniciarPokedex() {
+    mostrarDisplay(['', '']);
+    mostrarImagen('./img/pokebola.png');
+    actualizarVisor('');
+    actualizarPadIzqDer('', () => {});
+    actualizarNavegacion('inic', callbackListaPokemones);
+    actualizarBotones('', () => {});
+    actualizarPadArrAbj('', () => {});
+  };
 }
-*/
 
 export function inicializarPokedex(callbackPokemon, callbackListaPokemones) {
-  document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
-    callbackListaPokemones(0);
-  };
-  document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
-    callbackListaPokemones(0);
-  };
+  actualizarNavegacion('inic', callbackListaPokemones);
   configurarBusquedaInput(callbackPokemon);
+  configurarBotonReset(callbackListaPokemones);
 }
 
-export function actualizarUiPokemon(datosPokemon) {
+export function actualizarUiPokemon(datosPokemon, callbackPokemon) {
   mostrarDisplay([
     ['Nombre', datosPokemon.nombre],
     ['Altura', `${datosPokemon.altura / 10} m`],
     ['Peso', `${datosPokemon.peso / 10} kg`],
     ['Tipo', (datosPokemon.tipo[0].type.name + (datosPokemon.tipo.length > 1 ? `-${datosPokemon.tipo[1].type.name}` : ''))],
   ]);
-  actualizarImagen(datosPokemon.imagenes);
+  const { imagenes } = datosPokemon;
+  actualizarImagen(imagenes);
   actualizarVisor(datosPokemon.id);
-  actualizarPad(datosPokemon.id, datosPokemon.imagenes);
+  actualizarPadIzqDer(datosPokemon.id, callbackPokemon);
 }
 
-export function actualizarUiListaPokemon(datosLista, callbackListaPokemones, callbackPokemon) {
+export function actualizarUiListaPokemon(datosLista, callbackPokemon, callbackListaPokemones) {
   mostrarDisplay([
     [`${datosLista.pagina * 10 + 1}-${datosLista.resultado[0]}`, `${datosLista.pagina * 10 + 6}-${datosLista.resultado[5]}`],
     [`${datosLista.pagina * 10 + 2}-${datosLista.resultado[1]}`, `${datosLista.pagina * 10 + 7}-${datosLista.resultado[6]}`],
@@ -129,6 +149,14 @@ export function actualizarUiListaPokemon(datosLista, callbackListaPokemones, cal
     [`${datosLista.pagina * 10 + 4}-${datosLista.resultado[3]}`, `${datosLista.pagina * 10 + 9}-${datosLista.resultado[8]}`],
     [`${datosLista.pagina * 10 + 5}-${datosLista.resultado[4]}`, `${datosLista.pagina * 10 + 10}-${datosLista.resultado[9]}`],
   ]);
-  actualizarBotones(callbackPokemon, datosLista.resultado);
-  actualizarNavegacion(callbackListaPokemones, datosLista.pagina);
+  actualizarBotones(datosLista.resultado, callbackPokemon);
+  actualizarNavegacion(datosLista.pagina, callbackListaPokemones);
+}
+
+export function mostrarCargandoPokemon() {
+  mostrarImagen('./img/pokebola.png');
+}
+
+export function mostrarCargandoDisplay() {
+  mostrarDisplay([['Cargando...', '']]);
 }

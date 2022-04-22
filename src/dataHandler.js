@@ -1,4 +1,4 @@
-import { cargarPokemon, cargarListaPokemon } from './query';
+import { cargarPokemon, cargarListaPokemon } from './query.js';
 
 export async function obtenerDatosPokemon(pokemon) {
   const datosPokemon = await cargarPokemon(pokemon);
