@@ -6,7 +6,12 @@
   "scripts": {
     "server": "http-server --cors",
     "test": "cypress run",
-    "eslint": "./node_modules/.bin/eslint --fix  /src/"
+    "jest": "jest --watch"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,6 +28,8 @@
   },
   "homepage": "https://github.com/rodrigoEsquel/Pokedex#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^28.0.2",
     "cypress": "^9.5.4",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -30,6 +37,10 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^28.0.2"
+  },
+  "dependencies": {
+    "@jest/types": "^28.0.2"
   }
 }
