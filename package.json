@@ -6,7 +6,7 @@
   "scripts": {
     "server": "http-server --cors",
     "test": "cypress run",
-    "jest": "jest --watch"
+    "jest": "jest --watchAll"
   },
   "jest": {
     "transform": {
