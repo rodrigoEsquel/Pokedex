@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { cargarPokemon, cargarListaPokemon } from './query.js';
 
 export async function obtenerDatosPokemon(pokemon) {
