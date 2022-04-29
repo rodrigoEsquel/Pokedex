@@ -1,23 +1,23 @@
 /* eslint-disable import/extensions */
-import { obtenerDatosPokemon, obtenerListaPokemones } from './mapData.js';
+import { mapearDatosPokemon, mapearListaPokemones } from './map.js';
 import {
   actualizarUiPokemon,
   actualizarUiListaPokemon,
   inicializarUiPokedex,
   mostrarCargandoPokemon,
   mostrarCargandoDisplay,
-} from './ui.js';
+} from './ui/ui.js';
 
 async function actualizaPokemon(pokemon) {
   mostrarCargandoPokemon();
   mostrarCargandoDisplay();
-  const infoPokemon = await obtenerDatosPokemon(pokemon);
+  const infoPokemon = await mapearDatosPokemon(pokemon);
   actualizarUiPokemon(infoPokemon, actualizaPokemon);
 }
 
 async function actualizalistaPokemon(nroLista) {
   mostrarCargandoDisplay();
-  const listaPokemon = await obtenerListaPokemones(nroLista);
+  const listaPokemon = await mapearListaPokemones(nroLista);
   actualizarUiListaPokemon(listaPokemon, actualizaPokemon, actualizalistaPokemon);
 }
 

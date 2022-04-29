@@ -89,8 +89,8 @@ function actualizarBotones(listaPokemones, callbackPokemon) {
 }
 
 function actualizarNavegacion(pagina, callbackListaPokemones) {
-  const siguientePagina = pagina === 'inic' ? 0 : pagina + 1;
-  const anteriorPagina = pagina === 'inic' ? 0 : pagina + 1;
+  const siguientePagina = pagina + 1;
+  const anteriorPagina = pagina - 1;
   document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
     callbackListaPokemones(siguientePagina);
   };
@@ -107,14 +107,14 @@ function configurarBotonReset(callbackListaPokemones) {
     mostrarImagen('./img/pokebola.png');
     actualizarVisor('');
     actualizarPadIzqDer('', () => {});
-    actualizarNavegacion('inic', callbackListaPokemones);
+    actualizarNavegacion(1, callbackListaPokemones);
     actualizarBotones('', () => {});
     actualizarPadArrAbj('', () => {});
   };
 }
 
 export function inicializarUiPokedex(callbackPokemon, callbackListaPokemones) {
-  actualizarNavegacion('inic', callbackListaPokemones);
+  actualizarNavegacion(1, callbackListaPokemones);
   configurarBusquedaInput(callbackPokemon);
   configurarBotonReset(callbackListaPokemones);
 }
