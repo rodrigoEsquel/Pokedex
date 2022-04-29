@@ -32,12 +32,12 @@ describe('Pokedex', () => {
   });
 
   it('puede buscar un pokemon por numero', () => {
-    cy.get('input').type(`26{enter}`);
+    cy.get('input').type('26{enter}');
     cy.get('#display-2').should('contain.text', 'raichu');
   });
 
   it('reinicia valores', () => {
-    cy.get('input').type(`26{enter}`);
+    cy.get('input').type('26{enter}');
     cy.get('#reinicio').click();
     cy.get('#numero').should('have.text', '');
     cy.get('#display-1').should('have.text', '');
@@ -58,13 +58,13 @@ describe('Pokedex', () => {
 
   context('interacciones', () => {
     it('navega por pokemones con el cursor derecho', () => {
-      cy.get('input').type(`26{enter}`);
+      cy.get('input').type('26{enter}');
       cy.get('#padDerecha').click();
       cy.get('#numero').should('have.text', 'ID 27');
     });
 
     it('navega por pokemones con el cursor izquierdo', () => {
-      cy.get('input').type(`26{enter}`);
+      cy.get('input').type('26{enter}');
       cy.get('#padIzquierda').click();
       cy.get('#numero').should('have.text', 'ID 25');
     });
