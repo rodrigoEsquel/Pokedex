@@ -1,4 +1,5 @@
-import { cargarPokemon, cargarListaPokemon } from './query.js';
+// eslint-disable-next-line import/extensions
+import { cargarPokemon, cargarListaPokemon } from './api.js';
 
 export async function obtenerDatosPokemon(pokemon) {
   const datosPokemon = await cargarPokemon(pokemon);

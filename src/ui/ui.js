@@ -100,15 +100,6 @@ function actualizarNavegacion(pagina, callbackListaPokemones) {
     }
   };
 }
-/*
-function inicializarNavegacion(callbackListaPokemones) {
-  document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {
-    callbackListaPokemones(0);
-  };
-  document.querySelector('#explorar-menos').onclick = function buscarPaginaAnterior() {
-    callbackListaPokemones(0);
-  };
-} */
 
 function configurarBotonReset(callbackListaPokemones) {
   document.querySelector('#reinicio').onclick = function reiniciarPokedex() {
@@ -122,7 +113,7 @@ function configurarBotonReset(callbackListaPokemones) {
   };
 }
 
-export function inicializarPokedex(callbackPokemon, callbackListaPokemones) {
+export function inicializarUiPokedex(callbackPokemon, callbackListaPokemones) {
   actualizarNavegacion('inic', callbackListaPokemones);
   configurarBusquedaInput(callbackPokemon);
   configurarBotonReset(callbackListaPokemones);
