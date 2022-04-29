@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import {
   mostrarDisplay,
   mostrarImagen,
@@ -6,7 +7,7 @@ import {
   actualizarNavegacion,
   actualizarBotones,
   actualizarPadArrAbj,
-} from './uiHandlers.js';
+} from './handlers.js';
 
 export function configurarBusquedaInput(callbackPokemon) {
   const $inputText = document.querySelector('input');

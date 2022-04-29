@@ -7,7 +7,7 @@ import {
   actualizarNavegacion,
   actualizarBotones,
   actualizarImagen,
-} from './uiHandlers.js';
+} from './handlers.js';
 
 import {
   configurarBusquedaInput,
