@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
-import { mapearDatosPokemon, mapearListaPokemones } from './map.js';
+import { mapearDatosPokemon, mapearListaPokemones } from './data/index.js';
 import {
   actualizarUiPokemon,
   actualizarUiListaPokemon,
   inicializarUiPokedex,
   mostrarCargandoPokemon,
   mostrarCargandoDisplay,
-} from './ui/ui.js';
+} from './ui/index.js';
 
 async function actualizaPokemon(pokemon) {
   mostrarCargandoPokemon();

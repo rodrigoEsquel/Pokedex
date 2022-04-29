@@ -1,3 +1,4 @@
-import inicializarPokedex from './app';
+/* eslint-disable import/extensions */
+import inicializarPokedex from './app.js';
 
 inicializarPokedex();
