@@ -10,7 +10,7 @@ beforeEach(() => {
   global.fetch = jest.fn();
 });
 
-test('Carga pokemon', async () => {
+test('Mapeo de datos Pokemon', async () => {
   global.fetch.mockReturnValueOnce(new Promise((resolve) => {
     const jsonPromise = new Promise((resolve) => resolve({json: () => pokemonFixture}))
     resolve(jsonPromise);
@@ -25,7 +25,7 @@ test('Carga pokemon', async () => {
   expect(Object.keys(respuesta)).toContain("tipo");  
 });
 
-test('Carga lista Pokemon', async () => {
+test('Mapeo de lista Pokemon', async () => {
     global.fetch.mockReturnValueOnce(new Promise((resolve) => {
     resolve({json: () => pokemonListFixture});
   }))

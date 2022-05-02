@@ -11,7 +11,8 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testEnvironment": "jsdom"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,10 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "jest": "^28.0.2"
+    "jest": "^28.0.2",
+    "jest-environment-jsdom": "^28.0.2",
+    "jquery": "^3.6.0",
+    "jsdom": "^19.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
