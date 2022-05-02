@@ -21,7 +21,6 @@ export function configurarBusquedaInput(callbackPokemon) {
   }
   document.querySelector('#buscar').onclick = buscarPokemon;
   function enviarInput(event) {
-    debugger;
     if (event.key === 'Enter') {
       buscarPokemon();
     }
