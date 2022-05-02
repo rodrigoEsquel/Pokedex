@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,11 +96,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,12 +111,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,12 +124,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// eslint-disable-next-line import/extensions
 import { cargarPokemon, cargarListaPokemon } from './api.js';
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >mapearDatosPokemon(</span>pokemon) {
-  const datosPokemon = <span class="cstat-no" title="statement not covered" >await cargarPokemon(pokemon);</span>
-  const imagen0 = <span class="cstat-no" title="statement not covered" >datosPokemon.sprites.front_default;</span>
-  const imagen1 = <span class="cstat-no" title="statement not covered" >datosPokemon.sprites.back_default;</span>
-  const imagen2 = <span class="cstat-no" title="statement not covered" >datosPokemon.sprites.other['official-artwork'].front_default;</span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
+export async function mapearDatosPokemon(pokemon) {
+  const datosPokemon = await cargarPokemon(pokemon);
+  const imagen0 = datosPokemon.sprites.front_default;
+  const imagen1 = datosPokemon.sprites.back_default;
+  const imagen2 = datosPokemon.sprites.other['official-artwork'].front_default;
+  return {
     imagenes: [imagen0, imagen1, imagen2],
     id: datosPokemon.id,
     nombre: datosPokemon.name,
@@ -139,13 +139,13 @@ export async function <span class="fstat-no" title="function not covered" >mapea
   };
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >mapearListaPokemones(</span>pagina) {
-  const lista = <span class="cstat-no" title="statement not covered" >await cargarListaPokemon(pagina);</span>
-  const listaPokemones = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >  lista.forEach(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    listaPokemones.push(elem.name);</span>
+export async function mapearListaPokemones(pagina) {
+  const lista = await cargarListaPokemon(pagina);
+  const listaPokemones = [];
+  lista.forEach((elem) =&gt; {
+    listaPokemones.push(elem.name);
   });
-<span class="cstat-no" title="statement not covered" >  return {</span>
+  return {
     resultado: listaPokemones,
     pagina,
   };
@@ -157,7 +157,7 @@ export async function <span class="fstat-no" title="function not covered" >mapea
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun May 01 2022 08:14:21 GMT-0300 (hora estándar de Argentina)
+                at Sun May 01 2022 21:57:57 GMT-0300 (hora estándar de Argentina)
             </div>
         <script src="../../prettify.js"></script>
         <script>

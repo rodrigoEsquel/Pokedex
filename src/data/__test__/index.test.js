@@ -1,6 +1,7 @@
 /// <reference types="jest" />
 // eslint-disable-next-line import/extensions
-import fixturePokemon from './mockList.json';
+import pokemonFixture from './pokeMock.json';
+import pokemonListFixture from './listMock.json';
 import 'regenerator-runtime/runtime' ; '@babel/runtime'
 
 import { mapearDatosPokemon, mapearListaPokemones } from '../index.js';
@@ -11,19 +12,25 @@ beforeEach(() => {
 
 test('Carga pokemon', async () => {
   global.fetch.mockReturnValueOnce(new Promise((resolve) => {
-    const jsonPromise = new Promise((resolve) => resolve(fixturePokemon))
+    const jsonPromise = new Promise((resolve) => resolve({json: () => pokemonFixture}))
     resolve(jsonPromise);
   }))
-  await mapearDatosPokemon(2);
-  expect(global.fetch).toBeCalledTimes(1);
-  expect(global.fetch).toBeCalledWith('https://pokeapi.co/api/v2/pokemon/2');
+  const respuesta = await mapearDatosPokemon(1);
+  expect(typeof respuesta).toBe("object");
+  expect(Object.keys(respuesta)).toContain("imagenes");
+  expect(Object.keys(respuesta)).toContain("id");
+  expect(Object.keys(respuesta)).toContain("nombre");
+  expect(Object.keys(respuesta)).toContain("altura");
+  expect(Object.keys(respuesta)).toContain("peso");
+  expect(Object.keys(respuesta)).toContain("tipo");  
 });
 
 test('Carga lista Pokemon', async () => {
     global.fetch.mockReturnValueOnce(new Promise((resolve) => {
-    resolve({json: () => "./mockList .json"});
+    resolve({json: () => pokemonListFixture});
   }))
-  await mapearListaPokemones(2);
-  expect(global.fetch).toBeCalledTimes(1);
-  expect(global.fetch).toBeCalledWith('https://pokeapi.co/api/v2/pokemon/?offset=20&limit=10');
+  const respuesta = await mapearListaPokemones(2);
+  expect(typeof respuesta).toBe("object");
+  expect(Object.keys(respuesta)).toContain("resultado");
+  expect(respuesta.resultado.length).toBe(10);
 });
