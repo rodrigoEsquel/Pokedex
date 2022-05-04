@@ -2,5 +2,6 @@
   "editor.tabSize": 2,
   "editor.autoClosingQuotes": "always",
   "editor.autoClosingOvertype": "always",
-  "editor.autoClosingBrackets": "always"
+  "editor.autoClosingBrackets": "always",
+  "files.eol": "\n"
 }

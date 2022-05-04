@@ -12,7 +12,6 @@ export function cargarPokemon(pokemon) {
   return fetch(generarUrlPokemon(pokemon))
     .then((response) => response.json())
     .catch((error) => {
-      // $inputText.value = 'Pokemon no encontrado';
       throw new Error(error);
     });
 }

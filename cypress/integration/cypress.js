@@ -1,16 +1,5 @@
 /// <reference types="cypress" />
 
-// Welcome to Cypress!
-//
-// This spec file contains a variety of sample tests
-// for a todo list app that are designed to demonstrate
-// the power of writing tests in Cypress.
-//
-// To learn more about how Cypress works and
-// what makes it such an awesome testing tool,
-// please read our getting started guide:
-// https://on.cypress.io/introduction-to-cypress
-
 describe('Pokedex', () => {
   beforeEach(() => {
     // Cypress starts out with a blank slate for each test
@@ -68,14 +57,7 @@ describe('Pokedex', () => {
       cy.get('#padIzquierda').click();
       cy.get('#numero').should('have.text', 'ID 25');
     });
-    /*
-    it('cambia imagen con cursor arriba', () => {
-      cy.get('input').type(`26{enter}`);
-      const anteriorImagen = cy.get('#imagen').screenshot();
-      //cy.get('#padArriba').click();
-      cy.get('#imagen').screenshot().should('equal', anteriorImagen);
-    });
-    */
+
     it('navega por pokemones desde el menu', () => {
       cy.get('#explorar-mas').click();
       cy.get('#boton-1').click();

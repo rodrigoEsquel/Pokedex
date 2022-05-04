@@ -1,0 +1,221 @@
+'<div class="grid place-items-center h-screen">
+  <svg id="pokedex" height="500" width="650" class="object-top select-none shadow-[-35px_35px_10px_rgba(0,0,0,0.25)]"
+    viewBox="37 -13.5 300 289">
+
+    <g id="body" class="fill-red-700 stroke-red-900">
+      <polygon points="0,0 0,50 85,50 115,25 200,25 200,0" style="fill:red" />
+      <polygon points="0,50 85,50 115,25 175,25 175,275 0,275" />
+      <polygon points="5,55 88,55 118,30 170,30 170,270 5,270" style="fill:red" />
+      <polygon points="375,275 375,50 290,50 260,25 200,25 200,275" />
+      <polygon points="370,270 370,55 288,55 258,30 205,30 205,270" style="fill:red;" />
+      <polygon points="175,275 200,275 200,25 175,25" style="fill:red;" />
+      <polygon points="175,240 200,240 200,255 175,255" />
+      <polygon points="175,40 200,40 200,55 175,55" />
+    </g>
+
+    <g>
+      <circle cx="35" cy="25" r="15" stroke="white" stroke-width="4" fill="cyan" />
+      <circle cx="36" cy="26" r="12" fill="cadetblue" />
+      <circle cx="30" cy="20" r="5" fill="cyan" />
+      <circle cx="30" cy="20" r="2" fill="white" />
+      <circle cx="68" cy="10" r="3" style="fill:red;stroke:brown;stroke-width:1" />
+      <circle cx="80" cy="10" r="3" style="fill:yellow;stroke:brown;stroke-width:1" />
+      <circle cx="92" cy="10" r="3" style="fill:green;stroke:brown;stroke-width:1" />
+    </g>
+
+    <g>
+      <circle cx="50" cy="170" r="25" stroke="brown" stroke-width="1" fill="white" />
+      <polygon points="25,75 25,170 50,195 155,195 155,75" style="fill:white;stroke:brown ;stroke-width:1;" />
+      <circle cx="50" cy="170" r="24" stroke="white" stroke-width="1" fill="white" />
+      <rect x="44" y="94" width="92" height="82" style="fill:rgb(12, 103, 183);stroke:black;stroke-width:2;" />
+      <image id="imagen" x="45" y="95" width="90" height="80" href="./img/pokebola.png" />
+      <rect x="80" y="82" width="4" height="4" style="fill:brown;" />
+      <rect x="100" y="82" width="4" height="4" style="fill:brown;" />
+      <svg x="125" y="180">
+        <svg x="0" y="0">
+          <g fill="black">
+            <circle cx="1" cy="1" r="1" />
+            <rect x="1" y="0" width="10" height="2" />
+            <circle cx="11" cy="1" r="1" />
+          </g>
+        </svg>
+        <svg x="0" y="3">
+          <g fill="black">
+            <circle cx="1" cy="1" r="1" />
+            <rect x="1" y="0" width="10" height="2" />
+            <circle cx="11" cy="1" r="1" />
+          </g>
+        </svg>
+        <svg x="0" y="6">
+          <g fill="black">
+            <circle cx="1" cy="1" r="1" />
+            <rect x="1" y="0" width="10" height="2" />
+            <circle cx="11" cy="1" r="1" />
+          </g>
+        </svg>
+        <svg x="0" y="9">
+          <g fill="black">
+            <circle cx="1" cy="1" r="1" />
+            <rect x="1" y="0" width="10" height="2" />
+            <circle cx="11" cy="1" r="1" />
+          </g>
+        </svg>
+      </svg>
+      <circle cx="48" cy="185" r="3" style="fill:red;stroke:brown;stroke-width:1;" />
+    </g>
+
+    <rect x="48" y="225" width="50" height="30" style="fill:green;stroke:brown;stroke-width:1" />
+    <text id="numero" x="50" y="245" style="fill:rgb(32, 32, 32);"></text>
+    <g class="fill-stone-800  stroke-black">
+      <polygon id="padArriba" class="hover:fill-stone-600" points="135,230 143,222 143,206 127,206 127,222"
+        onclick="{}" />
+      <polygon id="padDerecha" class="hover:fill-stone-600" points="135,230 143,222 158,222 158,238 143,238"
+        onclick="{}" />
+      <polygon id="padAbajo" class="hover:fill-stone-600" points="135,230 143,238 143,254 127,254 127,238"
+        onclick="{}" />
+      <polygon id="padIzquierda" class="hover:fill-stone-600" points="135,230 127,238 111,238 111,222 127,222"
+        onclick="{}" />
+    </g>
+
+
+    <svg x="45" y="206">
+      <g style="fill:rgb(140, 10, 10);">
+        <circle cx="3" cy="3" r="3" />
+        <rect x="3" y="0" width="18" height="6" />
+        <circle cx="21" cy="3" r="3" />
+      </g>
+    </svg>
+    <svg x="77" y="206">
+      <g style="fill:rgb(12, 103, 183);">
+        <circle cx="3" cy="3" r="3" />
+        <rect x="3" y="0" width="18" height="6" />
+        <circle cx="21" cy="3" r="3" />
+      </g>
+    </svg>
+
+
+    <g id="reinicio" onclick="{}">
+      <circle cx="25" cy="215" r="9" class="fill-stone-800 hover:fill-stone-600 stroke-black" />
+      <svg x="15" y="205" class="svg-icon" viewBox="178 -5 100 450" fill="white">
+        <path d=" M13.53,2.238c-0.389-0.164-0.844,0.017-1.01,0.41c-0.166,0.391,0.018,0.845,0.411,1.01
+        c2.792,1.181,4.598,3.904,4.6,6.937c0,4.152-3.378,7.529-7.53,7.529c-4.151,0-7.529-3.377-7.529-7.529
+        C2.469,7.591,4.251,4.878,7.01,3.683C7.401,3.515,7.58,3.06,7.412,2.67c-0.17-0.392-0.624-0.571-1.014-0.402
+        c-3.325,1.44-5.472,4.708-5.47,8.327c0,5.002,4.069,9.071,9.071,9.071c5.003,0,9.073-4.07,9.073-9.071
+        C19.07,6.939,16.895,3.659,13.53,2.238z"></path>
+        <path d="M9.999,7.616c0.426,0,0.771-0.345,0.771-0.771v-5.74c0-0.426-0.345-0.771-0.771-0.771
+          c-0.427,0-0.771,0.345-0.771,0.771v5.74C9.228,7.271,9.573,7.616,9.999,7.616z"></path>
+      </svg>
+    </g>
+    <rect x="215" y="65" width="145" height="60" rx="5" ry="5" style="fill:rgb(32, 32, 32);"></rect>
+
+
+    <svg x="215" y="65" width="70" height="90" viewBox="0 0 90 110">
+      <text id="display-1" x="0" y="10" style="fill:white;" class="text-xs"></text>
+    </svg>
+
+    <svg x="290" y="65" width="70" height="90" viewBox="0 0 90 110">
+      <text id="display-2" x="0" y="10" style="fill:white;" class="text-xs"></text>
+    </svg>
+    <g>
+      <rect x="215" y="135" width="145" height="48" rx="5" ry="5" class="fill-sky-600"></rect>
+      <svg x="214.5" y="134.5">
+        <g class="fill-sky-600  stroke-black text-xs">
+          <g id="boton-0" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="1" y="1" width="28" height="23" rx="5" ry="5" />
+            <text x="10" y="19">_1</text>
+          </g>
+          <g id="boton-1" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="30" y="1" width="28" height="23" rx="5" ry="5" />
+            <text x="40" y="19">_2</text>
+          </g>
+          <g id="boton-2" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="59" y="1" width="28" height="23" rx="5" ry="5" />
+            <text x="69" y="19">_3</text>
+          </g>
+          <g id="boton-3" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="88" y="1" width="28" height="23" rx="5" ry="5" />
+            <text x="98" y="19">_4</text>
+          </g>
+          <g id="boton-4" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="117" y="1" width="28" height="23" rx="5" ry="5" />
+            <text x="127" y="19">_5</text>
+          </g>
+          <g id="boton-5" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="1" y="25" width="28" height="23" rx="5" ry="5" />
+            <text x="10" y="42">_6</text>
+          </g>
+          <g id="boton-6" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="30" y="25" width="28" height="23" rx="5" ry="5" />
+            <text x="40" y="42">_7</text>
+          </g>
+          <g id="boton-7" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="59" y="25" width="28" height="23" rx="5" ry="5" />
+            <text x="69" y="42">_8</text>
+          </g>
+          <g id="boton-8" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="88" y="25" width="28" height="23" rx="5" ry="5" />
+            <text x="98" y="42">_9</text>
+          </g>
+          <g id="boton-9" class="boton-pokemon hover:fill-sky-500" onclick="{}">
+            <rect x="117" y="25" width="28" height="23" rx="5" ry="5" />
+            <text x="127" y="42">_0</text>
+          </g>
+        </g>
+      </svg>
+    </g>
+    <g>
+      <rect x="215" y="200" width="58" height="24" rx="5" ry="5" style="fill:white;" />
+      <svg x="214.5" y="199.5">
+        <g id="explorar-menos" onclick="{}">
+          <rect x="1" y="1" width="28" height="23" rx="5" ry="5" class="fill-white stroke-black" />
+          <svg x="5" y="3" class="svg-icon">
+            <path
+              d="M11.739,13.962c-0.087,0.086-0.199,0.131-0.312,0.131c-0.112,0-0.226-0.045-0.312-0.131l-3.738-3.736c-0.173-0.173-0.173-0.454,0-0.626l3.559-3.562c0.173-0.175,0.454-0.173,0.626,0c0.173,0.172,0.173,0.451,0,0.624l-3.248,3.25l3.425,3.426C11.911,13.511,11.911,13.789,11.739,13.962 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.148,3.374,7.521,7.521,7.521C14.147,17.521,17.521,14.148,17.521,10">
+            </path>
+          </svg>
+        </g>
+        <g id="explorar-mas" onclick="{}">
+          <rect x="30" y="1" width="28" height="23" rx="5" ry="5" class="fill-white stroke-black" />
+          <svg x="34" y="3" class="svg-icon">
+            <path
+              d="M12.522,10.4l-3.559,3.562c-0.172,0.173-0.451,0.176-0.625,0c-0.173-0.173-0.173-0.451,0-0.624l3.248-3.25L8.161,6.662c-0.173-0.173-0.173-0.452,0-0.624c0.172-0.175,0.451-0.175,0.624,0l3.738,3.736C12.695,9.947,12.695,10.228,12.522,10.4 M18.406,10c0,4.644-3.764,8.406-8.406,8.406c-4.644,0-8.406-3.763-8.406-8.406S5.356,1.594,10,1.594C14.643,1.594,18.406,5.356,18.406,10M17.521,10c0-4.148-3.374-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.147,17.521,17.521,14.147,17.521,10">
+            </path>
+          </svg>
+        </g>
+      </svg>
+    </g>
+    <svg x="295" y="190">
+      <g s style="fill:rgb(32, 32, 32);">
+        <circle cx="3" cy="3" r="3" />
+        <rect x="3" y="0" width="18" height="6" />
+        <circle cx="21" cy="3" r="3" />
+      </g>
+    </svg>
+    <svg x="327" y="190">
+      <g s style="fill:rgb(32, 32, 32);">
+        <circle cx="3" cy="3" r="3" />
+        <rect x="3" y="0" width="18" height="6" />
+        <circle cx="21" cy="3" r="3" />
+      </g>
+    </svg>
+
+    <g id="buscar" onclick="{}">
+      <circle cx="340" cy="225" r="11" style="stroke:black;stroke-width:1"
+        class="fill-yellow-500 hover:fill-yellow-300" />
+      <svg x="330" y="215" class="svg-icon" style="fill:black">
+        <path
+          d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z">
+        </path>
+      </svg>
+    </g>
+
+    <rect x="215" y="242" width="64" height="20" rx="5" ry="5"
+      style="fill:rgb(32, 32, 32);stroke:black;stroke-width:1" />
+    <rect x="296" y="242" width="64" height="20" rx="5" ry="5"
+      style="fill:rgb(32, 32, 32);stroke:black;stroke-width:1" />
+
+  </svg>
+  <input type="text" placeholder="Busca tu pokemon favorito por nombre o ID"
+    class="w-80 shadow-[-10px_10px_10px_rgba(0,0,0,0.25)] rounded border-1" />
+</div>
+<script src='src/index.js' type="module"></script>'

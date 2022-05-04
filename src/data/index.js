@@ -1,7 +1,7 @@
-/* eslint-disable import/extensions */
-import { cargarPokemon, cargarListaPokemon } from './query.js';
+// eslint-disable-next-line import/extensions
+import { cargarPokemon, cargarListaPokemon } from './api.js';
 
-export async function obtenerDatosPokemon(pokemon) {
+export async function mapearDatosPokemon(pokemon) {
   const datosPokemon = await cargarPokemon(pokemon);
   const imagen0 = datosPokemon.sprites.front_default;
   const imagen1 = datosPokemon.sprites.back_default;
@@ -16,7 +16,7 @@ export async function obtenerDatosPokemon(pokemon) {
   };
 }
 
-export async function obtenerListaPokemones(pagina) {
+export async function mapearListaPokemones(pagina) {
   const lista = await cargarListaPokemon(pagina);
   const listaPokemones = [];
   lista.forEach((elem) => {
