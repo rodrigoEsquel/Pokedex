@@ -21,11 +21,11 @@ export function configurarBusquedaInput(callbackPokemon) {
   }
   document.querySelector('#buscar').onclick = buscarPokemon;
   function enviarInput(event) {
-    if (event.key === 'Enter') {
+    if (event.key == 'Enter') {
       buscarPokemon();
     }
   }
-  $inputText.addEventListener('keypress', enviarInput, false);
+  $inputText.addEventListener('keydown', enviarInput, true);
 }
 
 export function configurarBotonReset(callbackListaPokemones) {
@@ -33,9 +33,9 @@ export function configurarBotonReset(callbackListaPokemones) {
     mostrarDisplay(['', '']);
     mostrarImagen('./img/pokebola.png');
     actualizarVisor('');
-    actualizarPadIzqDer('', () => {});
+    actualizarPadIzqDer('');
     actualizarNavegacion(-1, callbackListaPokemones);
-    actualizarBotones('', () => {});
-    actualizarPadArrAbj('', () => {});
+    actualizarBotones('');
+    actualizarPadArrAbj('');
   };
 }

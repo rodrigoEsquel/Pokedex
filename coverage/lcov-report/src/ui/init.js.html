@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>16/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>16/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -116,33 +116,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable import/extensions */
@@ -156,34 +156,34 @@ import {
   actualizarPadArrAbj,
 } from './handlers.js';
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >configurarBusquedaInput(</span>callbackPokemon) {
-  const $inputText = <span class="cstat-no" title="statement not covered" >document.querySelector('input');</span>
-  function <span class="fstat-no" title="function not covered" >buscarPokemon(</span>) {
-    const regexNombrePokemon = <span class="cstat-no" title="statement not covered" >/^[a-zA-Z]*$/;</span>
-    const regexNumeroPokemon = <span class="cstat-no" title="statement not covered" >/^[0-9]*$/;</span>
-    const pokemon = <span class="cstat-no" title="statement not covered" >$inputText.value.replace(/\s+/g, '').toLowerCase();</span>
-<span class="cstat-no" title="statement not covered" >    if (regexNombrePokemon.test(pokemon) || regexNumeroPokemon.test(pokemon)) {</span>
-<span class="cstat-no" title="statement not covered" >      callbackPokemon(pokemon);</span>
+export function configurarBusquedaInput(callbackPokemon) {
+  const $inputText = document.querySelector('input');
+  function buscarPokemon() {
+    const regexNombrePokemon = /^[a-zA-Z]*$/;
+    const regexNumeroPokemon = /^[0-9]*$/;
+    const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (regexNombrePokemon.test(pokemon) || <span class="branch-1 cbranch-no" title="branch not covered" >regexNumeroPokemon.test(pokemon))</span> {
+      callbackPokemon(pokemon);
     }
   }
-<span class="cstat-no" title="statement not covered" >  document.querySelector('#buscar').onclick = buscarPokemon;</span>
+  document.querySelector('#buscar').onclick = buscarPokemon;
   function <span class="fstat-no" title="function not covered" >enviarInput(</span>event) {
 <span class="cstat-no" title="statement not covered" >    if (event.key === 'Enter') {</span>
 <span class="cstat-no" title="statement not covered" >      buscarPokemon();</span>
     }
   }
-<span class="cstat-no" title="statement not covered" >  $inputText.addEventListener('keypress', enviarInput, false);</span>
+  $inputText.addEventListener('keypress', enviarInput, false);
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >configurarBotonReset(</span>callbackListaPokemones) {
-<span class="cstat-no" title="statement not covered" >  document.querySelector('#reinicio').onclick = function <span class="fstat-no" title="function not covered" >reiniciarPokedex(</span>) {</span>
-<span class="cstat-no" title="statement not covered" >    mostrarDisplay(['', '']);</span>
-<span class="cstat-no" title="statement not covered" >    mostrarImagen('./img/pokebola.png');</span>
-<span class="cstat-no" title="statement not covered" >    actualizarVisor('');</span>
-<span class="cstat-no" title="statement not covered" >    actualizarPadIzqDer('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});</span>
-<span class="cstat-no" title="statement not covered" >    actualizarNavegacion(-1, callbackListaPokemones);</span>
-<span class="cstat-no" title="statement not covered" >    actualizarBotones('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});</span>
-<span class="cstat-no" title="statement not covered" >    actualizarPadArrAbj('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});</span>
+export function configurarBotonReset(callbackListaPokemones) {
+  document.querySelector('#reinicio').onclick = function reiniciarPokedex() {
+    mostrarDisplay(['', '']);
+    mostrarImagen('./img/pokebola.png');
+    actualizarVisor('');
+    actualizarPadIzqDer('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
+    actualizarNavegacion(-1, callbackListaPokemones);
+    actualizarBotones('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
+    actualizarPadArrAbj('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
   };
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -193,7 +193,7 @@ export function <span class="fstat-no" title="function not covered" >configurarB
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun May 01 2022 21:57:57 GMT-0300 (hora estándar de Argentina)
+                at Tue May 03 2022 21:53:43 GMT-0300 (hora estándar de Argentina)
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -22,7 +22,7 @@ export function mostrarImagen(imagen) {
   $imagen.setAttribute('href', imagen);
 }
 
-export function actualizarPadArrAbj(imagenesPokemon, callbackActualizarImagen) {
+export function actualizarPadArrAbj(imagenesPokemon, callbackActualizarImagen = () => {}) {
   document.querySelector('#padArriba').onclick = function buscarImagenSiguiente() {
     callbackActualizarImagen(imagenesPokemon, 1);
   };
@@ -48,7 +48,7 @@ export function actualizarVisor(input) {
   $displayId.innerHTML = mensaje;
 }
 
-export function actualizarPadIzqDer(idPokemon, callbackPokemon) {
+export function actualizarPadIzqDer(idPokemon, callbackPokemon = () => {}) {
   document.querySelector('#padDerecha').onclick = function buscarPokemonSiguiente() {
     callbackPokemon(idPokemon + 1);
   };
@@ -59,7 +59,7 @@ export function actualizarPadIzqDer(idPokemon, callbackPokemon) {
   };
 }
 
-export function actualizarBotones(listaPokemones, callbackPokemon) {
+export function actualizarBotones(listaPokemones, callbackPokemon = () => {}) {
   document.querySelectorAll('.boton-pokemon').forEach((elem, i) => {
     // eslint-disable-next-line no-param-reassign
     elem.onclick = () => {
@@ -68,7 +68,7 @@ export function actualizarBotones(listaPokemones, callbackPokemon) {
   });
 }
 
-export function actualizarNavegacion(pagina, callbackListaPokemones) {
+export function actualizarNavegacion(pagina, callbackListaPokemones = () => {}) {
   const siguientePagina = pagina + 1;
   const anteriorPagina = pagina - 1;
   document.querySelector('#explorar-mas').onclick = function buscarPaginaSiguiente() {

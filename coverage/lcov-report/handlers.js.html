@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/ui/handlers.js</title>
+    <title>Code coverage report for handlers.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/ui</a> handlers.js</h1>
+        <h1><a href="index.html">All files</a> handlers.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,14 +32,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -255,7 +255,7 @@ export function <span class="fstat-no" title="function not covered" >mostrarImag
 <span class="cstat-no" title="statement not covered" >  $imagen.setAttribute('href', imagen);</span>
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >actualizarPadArrAbj(</span>imagenesPokemon, callbackActualizarImagen) {
+export function <span class="fstat-no" title="function not covered" >actualizarPadArrAbj(</span>imagenesPokemon, callbackActualizarImagen = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {})</span> {
 <span class="cstat-no" title="statement not covered" >  document.querySelector('#padArriba').onclick = function <span class="fstat-no" title="function not covered" >buscarImagenSiguiente(</span>) {</span>
 <span class="cstat-no" title="statement not covered" >    callbackActualizarImagen(imagenesPokemon, 1);</span>
   };
@@ -281,7 +281,7 @@ export function <span class="fstat-no" title="function not covered" >actualizarV
 <span class="cstat-no" title="statement not covered" >  $displayId.innerHTML = mensaje;</span>
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >actualizarPadIzqDer(</span>idPokemon, callbackPokemon) {
+export function <span class="fstat-no" title="function not covered" >actualizarPadIzqDer(</span>idPokemon, callbackPokemon = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {})</span> {
 <span class="cstat-no" title="statement not covered" >  document.querySelector('#padDerecha').onclick = function <span class="fstat-no" title="function not covered" >buscarPokemonSiguiente(</span>) {</span>
 <span class="cstat-no" title="statement not covered" >    callbackPokemon(idPokemon + 1);</span>
   };
@@ -292,7 +292,7 @@ export function <span class="fstat-no" title="function not covered" >actualizarP
   };
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >actualizarBotones(</span>listaPokemones, callbackPokemon) {
+export function <span class="fstat-no" title="function not covered" >actualizarBotones(</span>listaPokemones, callbackPokemon = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {})</span> {
 <span class="cstat-no" title="statement not covered" >  document.querySelectorAll('.boton-pokemon').forEach(<span class="fstat-no" title="function not covered" >(e</span>lem, i) =&gt; {</span>
     // eslint-disable-next-line no-param-reassign
 <span class="cstat-no" title="statement not covered" >    elem.onclick = <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
@@ -301,7 +301,7 @@ export function <span class="fstat-no" title="function not covered" >actualizarB
   });
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >actualizarNavegacion(</span>pagina, callbackListaPokemones) {
+export function <span class="fstat-no" title="function not covered" >actualizarNavegacion(</span>pagina, callbackListaPokemones = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >()</span> =&gt; {})</span> {
   const siguientePagina = <span class="cstat-no" title="statement not covered" >pagina + 1;</span>
   const anteriorPagina = <span class="cstat-no" title="statement not covered" >pagina - 1;</span>
 <span class="cstat-no" title="statement not covered" >  document.querySelector('#explorar-mas').onclick = function <span class="fstat-no" title="function not covered" >buscarPaginaSiguiente(</span>) {</span>
@@ -322,16 +322,16 @@ export function <span class="fstat-no" title="function not covered" >actualizarN
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 03 2022 21:53:43 GMT-0300 (hora estándar de Argentina)
+                at Tue May 03 2022 23:35:10 GMT-0300 (hora estándar de Argentina)
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="sorter.js"></script>
+        <script src="block-navigation.js"></script>
     </body>
 </html>
     
