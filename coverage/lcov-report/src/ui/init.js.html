@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/18</span>
+                <span class='fraction'>18/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>6/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/18</span>
+                <span class='fraction'>18/21</span>
             </div>
         
             
@@ -104,7 +104,13 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,11 +124,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -156,23 +168,29 @@ import {
   actualizarPadArrAbj,
 } from './handlers.js';
 &nbsp;
-export function configurarBusquedaInput(callbackPokemon) {
+export function configurarBusquedaInput(callbackBuscarPokemonNombre,callbackBuscarPokemonId) {
   const $inputText = document.querySelector('input');
+&nbsp;
   function buscarPokemon() {
+    const tipoBusqueda = document.querySelector('#select').value;
     const regexNombrePokemon = /^[a-zA-Z]*$/;
-    const regexNumeroPokemon = /^[0-9]*$/;
+    const regexIdPokemon = /^[0-9]*$/;
     const pokemon = $inputText.value.replace(/\s+/g, '').toLowerCase();
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (regexNombrePokemon.test(pokemon) || <span class="branch-1 cbranch-no" title="branch not covered" >regexNumeroPokemon.test(pokemon))</span> {
-      callbackPokemon(pokemon);
+&nbsp;
+    if (tipoBusqueda === 'nombre' &amp;&amp; regexNombrePokemon.test(pokemon)) {
+      callbackBuscarPokemonNombre(pokemon)
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (tipoBusqueda === 'id' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >regexIdPokemon.test(pokemon))</span> {
+<span class="cstat-no" title="statement not covered" >      callbackBuscarPokemonId(pokemon)</span>
     }
   }
+&nbsp;
   document.querySelector('#buscar').onclick = buscarPokemon;
   function <span class="fstat-no" title="function not covered" >enviarInput(</span>event) {
-<span class="cstat-no" title="statement not covered" >    if (event.key === 'Enter') {</span>
+<span class="cstat-no" title="statement not covered" >    if (event.key == 'Enter') {  </span>
 <span class="cstat-no" title="statement not covered" >      buscarPokemon();</span>
     }
   }
-  $inputText.addEventListener('keypress', enviarInput, false);
+  $inputText.addEventListener('keydown', enviarInput, true); // &lt;-- Evento creado con addEventListener
 }
 &nbsp;
 export function configurarBotonReset(callbackListaPokemones) {
@@ -180,10 +198,10 @@ export function configurarBotonReset(callbackListaPokemones) {
     mostrarDisplay(['', '']);
     mostrarImagen('./img/pokebola.png');
     actualizarVisor('');
-    actualizarPadIzqDer('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
+    actualizarPadIzqDer('');
     actualizarNavegacion(-1, callbackListaPokemones);
-    actualizarBotones('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
-    actualizarPadArrAbj('', <span class="fstat-no" title="function not covered" >()</span> =&gt; {});
+    actualizarBotones('');
+    actualizarPadArrAbj('');
   };
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -193,7 +211,7 @@ export function configurarBotonReset(callbackListaPokemones) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 03 2022 21:53:43 GMT-0300 (hora estándar de Argentina)
+                at Wed May 04 2022 22:39:58 GMT-0300 (hora estándar de Argentina)
             </div>
         <script src="../../prettify.js"></script>
         <script>

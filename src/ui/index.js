@@ -16,7 +16,7 @@ import {
 
 export function inicializarUiPokedex(callbackPokemon, callbackListaPokemones) {
   actualizarNavegacion(-1, callbackListaPokemones);
-  configurarBusquedaInput(callbackPokemon);
+  configurarBusquedaInput(callbackPokemon,callbackPokemon);
   configurarBotonReset(callbackListaPokemones);
 }
 
