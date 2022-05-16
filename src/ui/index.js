@@ -20,17 +20,17 @@ export function inicializarUiPokedex(callbackPokemon, callbackListaPokemones) {
   configurarBotonReset(callbackListaPokemones);
 }
 
-export function actualizarUiPokemon(datosPokemon, callbackPokemon) {
+export function actualizarUiPokemon(Pokemon, callbackPokemon) {
   mostrarDisplay([
-    ['Nombre', datosPokemon.nombre],
-    ['Altura', `${datosPokemon.altura / 10} m`],
-    ['Peso', `${datosPokemon.peso / 10} kg`],
-    ['Tipo', (datosPokemon.tipo[0].type.name + (datosPokemon.tipo.length > 1 ? `-${datosPokemon.tipo[1].type.name}` : ''))],
+    ['Nombre', Pokemon.nombre],
+    ['Altura', `${Pokemon.altura / 10} m`],
+    ['Peso', `${Pokemon.peso / 10} kg`],
+    ['Tipo', (Pokemon.tipo[0].type.name + (Pokemon.tipo.length > 1 ? `-${Pokemon.tipo[1].type.name}` : ''))],
   ]);
-  const { imagenes } = datosPokemon;
+  const { imagenes } = Pokemon;
   actualizarImagen(imagenes);
-  actualizarVisor(datosPokemon.id);
-  actualizarPadIzqDer(datosPokemon.id, callbackPokemon);
+  actualizarVisor(Pokemon.id);
+  actualizarPadIzqDer(Pokemon.id, callbackPokemon);
 }
 
 export function actualizarUiListaPokemon(datosLista, callbackPokemon, callbackListaPokemones) {
